@@ -318,7 +318,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 40
+  field of view: 81.6
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 1561969590}
   - component: {fileID: 1561969589}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,6 +681,6 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
-  - {fileID: 1561969592}
   - {fileID: 227560982}
+  - {fileID: 1561969592}
   - {fileID: 233867393}
