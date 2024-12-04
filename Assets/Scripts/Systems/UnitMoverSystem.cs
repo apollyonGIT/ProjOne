@@ -1,4 +1,4 @@
-using Unity.Burst;
+﻿using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -11,7 +11,7 @@ partial struct UnitMoverSystem : ISystem
     {
         foreach (var (localTransform, moveSpeed, physicsVelocity) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<MoveSpeed>, RefRW<PhysicsVelocity>>())
         {
-            float3 targetPosition = localTransform.ValueRO.Position + new float3(1,0,0);
+            float3 targetPosition = MouseWorldPosition.instance.getPosition();
             float3 moveDirection = math.normalize(targetPosition - localTransform.ValueRO.Position);
 
             localTransform.ValueRW.Rotation = quaternion.LookRotation(moveDirection, math.up());
@@ -20,8 +20,6 @@ partial struct UnitMoverSystem : ISystem
             physicsVelocity.ValueRW.Angular = float3.zero;
             
             
-            
-            //localTransform.ValueRW.Position = localTransform.ValueRO.Position + moveDirection * moveSpeed.ValueRO.value * SystemAPI.Time.DeltaTime;
         }
 
     }
