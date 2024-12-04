@@ -11,7 +11,7 @@ public class UnitSelectionManager : MonoBehaviour
             var mouseWorldPosition = MouseWorldPosition.instance.getPosition();
 
             var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            var entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<UnitMover>().Build(entityManager);
+            var entityQuery = new EntityQueryBuilder(Allocator.Temp).WithAll<UnitMover, Selected>().Build(entityManager);
 
             var unitMoverArray = entityQuery.ToComponentDataArray<UnitMover>(Allocator.Temp);
             for (int i = 0; i < unitMoverArray.Length; i++)
