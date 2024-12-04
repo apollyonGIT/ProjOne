@@ -4,13 +4,18 @@ using UnityEngine;
 public class UnitMoverAuthoring : MonoBehaviour
 {
     public float moveSpeed;
+    public float rotateSpeed;
 
     public class Baker : Baker<UnitMoverAuthoring>
     {
         public override void Bake(UnitMoverAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(entity, new UnitMover { moveSpeed = authoring.moveSpeed });
+            AddComponent(entity, new UnitMover 
+            { 
+                moveSpeed = authoring.moveSpeed,
+                rotateSpeed = authoring.rotateSpeed,
+            });
         }
     }
 }
@@ -18,4 +23,5 @@ public class UnitMoverAuthoring : MonoBehaviour
 public struct UnitMover : IComponentData
 {
     public float moveSpeed;
+    public float rotateSpeed;
 }
