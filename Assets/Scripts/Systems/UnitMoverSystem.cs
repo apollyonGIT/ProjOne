@@ -25,10 +25,19 @@ partial struct UnitMoverSystem : ISystem
 
         public void Execute(ref LocalTransform localTransform, in UnitMover unitMover, ref PhysicsVelocity physicsVelocity)
         {
-            float3 moveDirection = math.normalize(unitMover.targetPosition - localTransform.Position);
+            float3 moveDirection = unitMover.targetPosition - localTransform.Position;
+
+            //停止判定
+            if (math.lengthsq(moveDirection) < 2f)
+            {
+                physicsVelocity.Linear = float3.zero;
+                physicsVelocity.Angular = float3.zero;
+                return;
+            }
+            moveDirection = math.normalize(moveDirection);
 
             localTransform.Rotation = math.slerp(localTransform.Rotation, quaternion.LookRotation(moveDirection, math.up()), deltaTime * unitMover.rotateSpeed);
-
+            
             physicsVelocity.Linear = moveDirection * unitMover.moveSpeed;
             physicsVelocity.Angular = float3.zero;
         }
